@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #1f2b74 0%, #202d78 78%, #1b245f 100%);
+    padding: 78px 110px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "left right"
+        "console console";
+    gap: 24px 22px;
+    position: relative;
+}
+
+body::before {
+    content: "🌤️ Async Weather Tracker";
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 33px;
+    font-weight: 800;
+    color: #b8e0ef;
+    letter-spacing: 0.3px;
+}
+
+.weatherForm {
+    grid-area: left;
+    background: #efefef;
+    border-radius: 16px;
+    padding: 20px 24px 180px;
+    min-height: 296px;
+    box-shadow: 0 2px 0 rgba(255,255,255,0.08) inset;
+    position: relative;
+}
+
+.weatherForm h4 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f0f0f;
+    margin-bottom: 10px;
+}
+
+#weatherForm {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#city {
+    flex: 1;
+    height: 44px;
+    border: 2px solid #b7dceb;
+    border-radius: 7px;
+    outline: none;
+    font-size: 16px;
+    padding: 0 14px;
+    background: #fff;
+}
+
+#city:focus {
+    border-color: #9fd2e6;
+}
+
+#weatherForm input[type="submit"] {
+    width: 92px;
+    height: 44px;
+    border: none;
+    border-radius: 7px;
+    background: #f47a35;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#weatherForm input[type="submit"]:hover {
+    background: #eb6e28;
+}
+
+body > h3 {
+    grid-area: left;
+    align-self: start;
+    margin-top: 128px;
+    margin-left: 24px;
+    z-index: 2;
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f0f0f;
+    pointer-events: none;
+}
+
+
+.history {
+    grid-area: left;
+    align-self: start;
+    margin-top: 168px;
+    margin-left: 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    z-index: 2;
+    width: calc(100% - 48px);
+}
+
+.history button {
+    border: none;
+    background: #f47a35;
+    color: #fff;
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-size: 15px;
+    cursor: pointer;
+    line-height: 1;
+    min-height: 30px;
+}
+
+.history button:hover {
+    background: #eb6e28;
+}
+
+
+.info {
+    grid-area: right;
+    background: #efefef;
+    border-radius: 16px;
+    min-height: 296px;
+    padding: 20px 22px;
+    position: relative;
+}
+
+.info::before {
+    content: "Weather Info";
+    display: block;
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f0f0f;
+    margin-bottom: 12px;
+}
+
+.info h3 {
+    display: none;
+}
+
+.info p {
+    background: #e9e9e9;
+    min-height: 44px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px 0 14px;
+    border-left: 4px solid #f47a35;
+    font-size: 17px;
+    color: #111;
+}
+
+
+.info p::first-line {
+    font-weight: 400;
+}
+
+
+.console {
+    grid-area: console;
+    background: #efefef;
+    border-radius: 16px;
+    min-height: 214px;
+    padding: 18px 24px 22px;
+    position: relative;
+}
+
+.console::before {
+    content: "Console – Event Loop";
+    display: block;
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f0f0f;
+    margin-bottom: 10px;
+}
+
+.console::after {
+    content: "1️⃣ Sync Start\A 2️⃣ Sync End\A [ASYNC] Start fetching\A 3️⃣ Promise.then (Microtask)\A 4️⃣ setTimeout (Macrotask)\A [ASYNC] Data received";
+    white-space: pre-line;
+    display: block;
+    background: #1e2668;
+    color: #cfe6ff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    border-left: 4px solid #f47a35;
+}
+
+
+.info:empty::before {
+    content: "Weather Info";
+}
+
+
+@media (max-width: 1000px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "left"
+            "right"
+            "console";
+        padding: 78px 20px 35px;
+    }
+
+    .weatherForm,
+    .info,
+    .console {
+        min-height: auto;
+    }
+
+    .weatherForm {
+        padding-bottom: 140px;
+    }
+
+    body > h3 {
+        margin-top: 118px;
+    }
+
+    .history {
+        margin-top: 156px;
+    }
+
+    #weatherForm {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #weatherForm input[type="submit"] {
+        width: 100%;
+    }
+
+    body::before {
+        font-size: 26px;
+        width: 100%;
+        text-align: center;
+    }
+}
